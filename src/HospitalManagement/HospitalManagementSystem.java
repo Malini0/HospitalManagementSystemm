@@ -75,7 +75,7 @@ public class HospitalManagementSystem {
         String appointmentDate = scanner.next();
         if(patient.getPatientById(patientId) && doctor.getDoctorById(doctorId)){
             if(checkDoctorAvailability(doctorId, appointmentDate, connection)){
-                String appointmentQuery = "INSERT INTO appointments(patient_id, doctor_id, appointment_date) VALUES(?, ?, ?)";
+                String appointmentQuery = "INSERT INTO appoinments(patient_id, doctor_id, appoinment_date) VALUES(?, ?, ?)";
                 try {
                     PreparedStatement preparedStatement = connection.prepareStatement(appointmentQuery);
                     preparedStatement.setInt(1, patientId);
@@ -99,7 +99,7 @@ public class HospitalManagementSystem {
     }
 
     public static boolean checkDoctorAvailability(int doctorId, String appointmentDate, Connection connection){
-        String query = "SELECT COUNT(*) FROM appointments WHERE doctor_id = ? AND appointment_date = ?";
+        String query = "SELECT COUNT(*) FROM appoinments WHERE doctor_id = ? AND appoinment_date = ?";
         try{
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, doctorId);
